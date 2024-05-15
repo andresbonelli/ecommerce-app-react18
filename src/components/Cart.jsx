@@ -26,8 +26,8 @@ export default function Cart({ cart }) {
         .redirectToCheckout({
           lineItems: lineItems,
           mode: "payment",
-          successUrl: "https://superm.react-tutorial.app/",
-          cancelUrl: "https://superm.react-tutorial.app/",
+          successUrl: "/",
+          cancelUrl: "/",
           customerEmail: email,
         })
         .then((response) => {
@@ -44,9 +44,9 @@ export default function Cart({ cart }) {
   return (
     <div className="cart-layout">
       <div>
-        <h1>Your Cart</h1>
+        <h1>Carrito de compras</h1>
         {cart.length === 0 && (
-          <p>You have not added any product to your cart yet.</p>
+          <p>Aún no has añadido productos a tu carrito :(</p>
         )}
         {cart.length > 0 && (
           <>
@@ -54,10 +54,10 @@ export default function Cart({ cart }) {
               <thead>
                 <tr>
                   <th width="25%" className="th-product">
-                    Product
+                    Producto
                   </th>
-                  <th width="20%">Unit price</th>
-                  <th width="10%">Quanity</th>
+                  <th width="20%">Precio por unidad</th>
+                  <th width="10%">Cantidad</th>
                   <th width="25%">Total</th>
                 </tr>
               </thead>
@@ -93,13 +93,11 @@ export default function Cart({ cart }) {
             </table>
             <form className="pay-form" onSubmit={handleFormSubmit}>
               <p>
-                Enter your email and then click on pay and your products will be
-                delivered to you on the same day!
+                Ingresar mail para registrarse y pagar
                 <br />
-                <em>
-                  Enter your own Stripe Publishable Key in Cart.js for the
-                  checkout to work
-                </em>
+                <em>(metodo de pago aún no implementado)</em>
+                <br></br>Sistema de checkout:
+                <a href="https://stripe.com/payments/checkout"> stripe.com</a>
               </p>
               <Input
                 placeholder="Email"
