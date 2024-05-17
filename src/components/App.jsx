@@ -90,7 +90,13 @@ function App() {
           ></Route>
           <Route
             path="/products/:id/"
-            element={<ProductDetails onProductAdd={handleProductAdd} />}
+            element={
+              <ProductDetails
+                onProductAdd={handleProductAdd}
+                onProductDelete={handleProductDelete}
+                cart={cart}
+              />
+            }
           >
             <Route
               path=""
@@ -104,7 +110,10 @@ function App() {
 
             <Route path="storage" element={<ProductDetailStorage />}></Route>
           </Route>
-          <Route path="/cart" element={<Cart cart={cart} />}></Route>
+          <Route
+            path="/cart"
+            element={<Cart cart={cart} onProductDelete={handleProductDelete} />}
+          ></Route>
         </Routes>
       </div>
     </BrowserRouter>

@@ -6,7 +6,8 @@ import Button from "./Button";
 // TODO: Replace with your own publishable key
 const stripeLoadedPromise = loadStripe("PK_REPLACE_WITH_YOUR_PUBLISHABLE_KEY");
 
-export default function Cart({ cart }) {
+export default function Cart(props) {
+  const { cart } = props;
   const totalPrice = cart.reduce(
     (total, product) => total + product.price * product.quantity,
     0
@@ -56,9 +57,10 @@ export default function Cart({ cart }) {
                   <th width="25%" className="th-product">
                     Producto
                   </th>
-                  <th width="20%">Precio por unidad</th>
+                  <th width="20%">Precio</th>
                   <th width="10%">Cantidad</th>
-                  <th width="25%">Total</th>
+                  <th width="20%">Total</th>
+                  <th width="5%"></th>
                 </tr>
               </thead>
               <tbody>
@@ -78,6 +80,15 @@ export default function Cart({ cart }) {
                       <td>{product.quantity}</td>
                       <td>
                         <strong>${product.price * product.quantity}</strong>
+                      </td>
+                      <td>
+                        <Button
+                          outline
+                          onClick={() => props.onProductDelete(product.id)}
+                          className="product-delete"
+                        >
+                          x
+                        </Button>
                       </td>
                     </tr>
                   );
