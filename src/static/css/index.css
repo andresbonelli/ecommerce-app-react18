@@ -348,6 +348,7 @@ input:focus {
 }
 
 .product-image-container .product-delete {
+  display: flex;
   background-color: white;
   position: absolute;
   bottom: 8px;
@@ -356,6 +357,7 @@ input:focus {
 
 .product-quantity-container {
   position: absolute;
+
   top: 8px;
   right: -15px;
   background-color: white;
@@ -363,7 +365,7 @@ input:focus {
   padding: 5px;
 }
 @media screen and (max-width: 768px) {
-  .product-quantity-container {
+  .product-details-layout .product-quantity-container {
     position: absolute;
     top: 8px;
     right: 175px;
@@ -407,6 +409,7 @@ input:focus {
 
 /* product details page */
 .product-details-image {
+  position: relative;
   background-color: white;
   padding: 10px;
   border-radius: 20px;

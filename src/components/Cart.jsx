@@ -69,10 +69,10 @@ export default function Cart(props) {
                     <tr key={product.id}>
                       <td>
                         <img
-                          src={product.image}
+                          src={`http://127.0.0.1:8000/images/${product.image_id}`}
                           width="30"
                           height="30"
-                          alt=""
+                          alt={product.name}
                         />{" "}
                         {product.name}
                       </td>

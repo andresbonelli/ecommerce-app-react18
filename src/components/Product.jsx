@@ -14,7 +14,7 @@ export default function Product(props) {
       <div className="product-image-container">
         <Link to={`/products/${details.id}`}>
           <img
-            src={details.image}
+            src={`http://127.0.0.1:8000/images/${details.image_id}`}
             width="100"
             height="100"
             className="product-image"

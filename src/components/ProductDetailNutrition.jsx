@@ -2,32 +2,33 @@ import { useOutletContext } from "react-router-dom";
 
 export default function ProductDetailNutrition() {
   const product = useOutletContext();
-  const nutrition = product.nutrition;
+  //const nutrition = product.nutrition;
+  console.log(`Producto: ${product}`);
 
   return (
     <table className="table table-nutrition">
       <thead>
         <tr>
-          <th>Nutrient</th>
-          <th>Value</th>
+          <th>Nutrientes</th>
+          <th>Cant. por porción</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Protein</td>
-          <td>{nutrition.protein}g</td>
+          <td>Proteinas</td>
+          <td>{product.protein}g</td>
         </tr>
         <tr>
-          <td>Carbohydrates</td>
-          <td>{nutrition.carbs}g</td>
+          <td>Carbohidratos</td>
+          <td>{product.carbs}g</td>
         </tr>
         <tr>
-          <td>Fat</td>
-          <td>{nutrition.fat}g</td>
+          <td>Grasas</td>
+          <td>{product.fat}g</td>
         </tr>
         <tr>
-          <td>Salt</td>
-          <td>{nutrition.salt}g</td>
+          <td>Sal</td>
+          <td>{product.salt}g</td>
         </tr>
       </tbody>
     </table>
