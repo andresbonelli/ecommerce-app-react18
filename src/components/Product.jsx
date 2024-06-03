@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import clsx from "clsx";
 import Button from "./Button";
 
 export default function Product(props) {
@@ -11,15 +12,24 @@ export default function Product(props) {
 
   return (
     <div className="product">
-      <div className="product-image-container">
-        <Link to={`/products/${details.id}`}>
+      <div
+        className={clsx("product-image-container", {
+          "out-of-stock": details.stock === 0,
+        })}
+      >
+        <Link to={details.stock > 0 ? `/products/${details.id}` : null}>
           <img
             src={`http://127.0.0.1:8000/images/${details.image_id}`}
             width="100"
             height="100"
-            className="product-image"
+            className={clsx("product-image", {
+              "out-of-stock": details.stock === 0,
+            })}
             alt={details.name}
           />
+          {details.stock === 0 && (
+            <div className="out-of-stock-label">SIN STOCK</div>
+          )}
         </Link>
         {quantity > 0 && (
           <div className="product-quantity-container">
@@ -43,7 +53,16 @@ export default function Product(props) {
             </Button>
           )}
         </div>
-        <Button outline onClick={() => props.onProductAdd(details)}>
+        {details.stock > 0 && (
+          <p className="product-available-quantity">
+            {`unidades disponibles: ${details.stock - quantity}`}
+          </p>
+        )}
+        <Button
+          outline
+          disabled={details.stock === 0 || quantity >= details.stock}
+          onClick={() => props.onProductAdd(details)}
+        >
           ${details.price}
         </Button>
       </div>

@@ -33,11 +33,11 @@ function App() {
   }
 
   function handleProductAdd(newProduct) {
-    // check if item exists
+    // check if item exists and quantity is less than the available stock
     const existingProduct = cart.find(
       (product) => product.id === newProduct.id
     );
-    if (existingProduct) {
+    if (existingProduct && existingProduct.quantity < newProduct.stock) {
       // increase quantity
       const updatedCart = cart.map((product) => {
         if (product.id === newProduct.id) {
@@ -112,7 +112,13 @@ function App() {
           </Route>
           <Route
             path="/cart"
-            element={<Cart cart={cart} onProductDelete={handleProductDelete} />}
+            element={
+              <Cart
+                cart={cart}
+                setCart={setCart}
+                onProductDelete={handleProductDelete}
+              />
+            }
           ></Route>
         </Routes>
       </div>

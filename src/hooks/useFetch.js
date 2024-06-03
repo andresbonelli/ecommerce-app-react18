@@ -1,7 +1,9 @@
 import { useState } from "react";
 
-export default function useFetch(baseUrl) {
+export default function useFetch() {
   const [loading, setLoading] = useState(true);
+
+  const baseUrl = import.meta.env.VITE_API_URL;
 
   function get(url) {
     return new Promise((resolve, reject) => {

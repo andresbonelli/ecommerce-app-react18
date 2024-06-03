@@ -22,10 +22,7 @@ export default function Products(props) {
       <h1>Productos</h1>
       <p>
         Productos disponibles en stock:<br></br>
-        <em>
-          (los datos en inglés es porque son traidos con API desde un endpoint
-          externo)
-        </em>
+        <em></em>
       </p>
       <div className="products-grid">
         {loading && <Loader />}

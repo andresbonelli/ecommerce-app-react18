@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
+import { useNavigate } from "react-router-dom";
+import useFetch from "../hooks/useFetch";
 import Input from "./Input";
 import Button from "./Button";
 
@@ -7,7 +9,9 @@ import Button from "./Button";
 const stripeLoadedPromise = loadStripe("PK_REPLACE_WITH_YOUR_PUBLISHABLE_KEY");
 
 export default function Cart(props) {
-  const { cart } = props;
+  const navigate = useNavigate();
+  const { post } = useFetch("http://127.0.0.1:8000/");
+  const { cart, setCart, onProductDelete } = props;
   const totalPrice = cart.reduce(
     (total, product) => total + product.price * product.quantity,
     0
@@ -19,9 +23,20 @@ export default function Cart(props) {
     event.preventDefault();
 
     const lineItems = cart.map((product) => {
-      return { price: product.price_id, quantity: product.quantity };
+      return {
+        id: product.id,
+        price: product.price_id,
+        quantity: product.quantity,
+      };
     });
 
+    // send request to backend to update products stock, clear cart and redirect to home.
+    post("update_stock/", { cart: lineItems });
+    localStorage.removeItem("cart");
+    setCart([]);
+    navigate("/");
+
+    // Stripe checkout code for later implementation
     stripeLoadedPromise.then((stripe) => {
       stripe
         .redirectToCheckout({
@@ -84,7 +99,7 @@ export default function Cart(props) {
                       <td>
                         <Button
                           outline
-                          onClick={() => props.onProductDelete(product.id)}
+                          onClick={() => onProductDelete(product.id)}
                           className="product-delete"
                         >
                           x
@@ -117,7 +132,7 @@ export default function Cart(props) {
                 type="email"
                 required
               />
-              <Button type="submit">Pay</Button>
+              <Button type="submit">Continuar compra...</Button>
             </form>
           </>
         )}
