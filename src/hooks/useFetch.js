@@ -3,7 +3,11 @@ import { useState } from "react";
 export default function useFetch() {
   const [loading, setLoading] = useState(true);
 
-  const baseUrl = import.meta.env.VITE_API_URL;
+  const apiURL = "/choreo-apis/ecommerceapp/backend/v1";
+
+  const baseUrl = import.meta.env.VITE_API_URL
+    ? import.meta.env.VITE_API_URL
+    : apiURL;
 
   function get(url) {
     return new Promise((resolve, reject) => {
