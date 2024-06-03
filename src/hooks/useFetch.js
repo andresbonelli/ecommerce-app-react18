@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function useFetch() {
   const [loading, setLoading] = useState(true);
 
-  const baseUrl = "/choreo-apis/ecommerceapp/backend/v1";
+  const baseUrl = "/choreo-apis/ecommerceapp/backend/v1/";
 
   function get(url) {
     return new Promise((resolve, reject) => {
