@@ -5,12 +5,10 @@ import useFetch from "../hooks/useFetch";
 
 export default function ProductDetails(props) {
   const [product, setProduct] = useState({});
-  const { get } = useFetch(
-    "http://127.0.0.1:8000/"
-    //"https://react-tutorial-demo.firebaseio.com/" // (datos demo)
-  );
+  const { get } = useFetch("http://127.0.0.1:8000/");
   const params = useParams();
   const { cart } = props;
+
   const productFromCart = cart.find(
     (existingProduct) => existingProduct.id === product.id
   );
@@ -30,7 +28,7 @@ export default function ProductDetails(props) {
         <h2>{product.name}</h2>
         <div className="product-image-container">
           <img
-            src={product.image_url}
+            src={product.image}
             width="125"
             height="125"
             className="product-details-image"
