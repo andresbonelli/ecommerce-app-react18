@@ -28,7 +28,7 @@ export default function useFetch(baseUrl) {
     return new Promise((resolve, reject) => {
       fetch(baseUrl + url, {
         ...{
-          method: "post",
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },

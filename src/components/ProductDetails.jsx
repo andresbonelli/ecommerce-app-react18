@@ -28,7 +28,7 @@ export default function ProductDetails(props) {
         <h2>{product.name}</h2>
         <div className="product-image-container">
           <img
-            src={product.image}
+            src={product.image_url}
             width="125"
             height="125"
             className="product-details-image"
