@@ -10,7 +10,7 @@ const stripeLoadedPromise = loadStripe("PK_REPLACE_WITH_YOUR_PUBLISHABLE_KEY");
 
 export default function Cart(props) {
   const navigate = useNavigate();
-  const { post } = useFetch("http://127.0.0.1:8000/");
+  const { post } = useFetch("/choreo-apis/ecommerceapp/backend/v1/");
   const { cart, setCart, onProductDelete } = props;
   const totalPrice = cart.reduce(
     (total, product) => total + product.price * product.quantity,
@@ -84,7 +84,7 @@ export default function Cart(props) {
                     <tr key={product.id}>
                       <td>
                         <img
-                          src={`http://127.0.0.1:8000/images/${product.image_id}`}
+                          src={`/choreo-apis/ecommerceapp/backend/v1/images/${product.image_id}`}
                           width="30"
                           height="30"
                           alt={product.name}
