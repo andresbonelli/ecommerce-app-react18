@@ -10,7 +10,7 @@ const stripeLoadedPromise = loadStripe("PK_REPLACE_WITH_YOUR_PUBLISHABLE_KEY");
 
 export default function Cart(props) {
   const navigate = useNavigate();
-  const { post } = useFetch();
+  const { post } = useFetch("http://127.0.0.1:8000/");
   const { cart, setCart, onProductDelete } = props;
   const totalPrice = cart.reduce(
     (total, product) => total + product.price * product.quantity,
