@@ -19,7 +19,7 @@ export default function Product(props) {
       >
         <Link to={details.stock > 0 ? `/products/${details.id}` : null}>
           <img
-            src={`http://127.0.0.1:8000/images/${details.image_id}`}
+            src={`https://beca0178-467f-4827-880f-b27b5fff42ea-dev.e1-us-cdp-2.choreoapis.dev/ecommerceapp/backend/v1/images/${details.image_id}`}
             width="100"
             height="100"
             className={clsx("product-image", {

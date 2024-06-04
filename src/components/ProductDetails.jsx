@@ -5,7 +5,7 @@ import useFetch from "../hooks/useFetch";
 
 export default function ProductDetails(props) {
   const [product, setProduct] = useState({});
-  const { get } = useFetch("http://127.0.0.1:8000/");
+  const { get } = useFetch("/choreo-apis/ecommerceapp/backend/v1/");
   const params = useParams();
   const { cart } = props;
 

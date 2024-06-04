@@ -84,7 +84,7 @@ export default function Cart(props) {
                     <tr key={product.id}>
                       <td>
                         <img
-                          src={`/choreo-apis/ecommerceapp/backend/v1/images/${product.image_id}`}
+                          src={`https://beca0178-467f-4827-880f-b27b5fff42ea-dev.e1-us-cdp-2.choreoapis.dev/ecommerceapp/backend/v1/images/${product.image_id}`}
                           width="30"
                           height="30"
                           alt={product.name}

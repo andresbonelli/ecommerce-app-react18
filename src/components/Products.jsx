@@ -5,7 +5,7 @@ import Loader from "./Loader";
 
 export default function Products(props) {
   const [products, setProducts] = useState([]);
-  const { get, loading } = useFetch("http://127.0.0.1:8000/");
+  const { get, loading } = useFetch("/choreo-apis/ecommerceapp/backend/v1/");
 
   useEffect(() => {
     get("products")
