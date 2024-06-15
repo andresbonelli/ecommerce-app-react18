@@ -83,13 +83,23 @@ export default function Cart(props) {
                   return (
                     <tr key={product.id}>
                       <td>
-                        <img
-                          src={`http://127.0.0.1:8000/images/${product.image_id}`}
-                          width="30"
-                          height="30"
-                          alt={product.name}
-                        />{" "}
-                        {product.name}
+                        {product.image_id ? (
+                          <img
+                            src={`http://127.0.0.1:8000/images/${product.image_id}`}
+                            width="30"
+                            height="30"
+                            alt={product.name}
+                          />
+                        ) : (
+                          <img
+                            src="./src/assets/images/no-image.svg"
+                            width="30"
+                            height="30"
+                            className="not-found"
+                          ></img>
+                        )}
+
+                        {" " + product.name}
                       </td>
                       <td>${product.price}</td>
                       <td>{product.quantity}</td>

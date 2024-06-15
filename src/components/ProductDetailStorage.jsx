@@ -5,7 +5,9 @@ export default function ProductDetailStorage() {
 
   return (
     <p>
-      <strong>Recomendaciones de almacenamiento:</strong> {storage}
+      <strong>Recomendaciones de almacenamiento:</strong>
+      <br></br>
+      {storage ? storage : "—"}
     </p>
   );
 }

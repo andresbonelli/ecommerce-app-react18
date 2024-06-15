@@ -10,7 +10,9 @@ export default function ProductDetailInfo({ onProductAdd }) {
         {product.description} - precio: <strong>${product.price}</strong> por
         unidad.
       </p>
-      <Button onClick={() => onProductAdd(product)}>${product.price}</Button>
+      <Button onClick={() => onProductAdd(product)}>
+        ${product.price ?? "—"}
+      </Button>
     </>
   );
 }

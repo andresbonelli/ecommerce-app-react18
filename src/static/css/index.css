@@ -529,6 +529,10 @@ input:focus {
   }
 }
 
+.not-found {
+  filter: opacity(50%);
+}
+
 /* Loader */
 .spinner {
   animation: rotator 1.4s linear infinite;

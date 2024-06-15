@@ -1,14 +1,26 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import Button from "./Button";
+import useFetch from "../hooks/useFetch";
 
 export default function Product(props) {
   const { details } = props;
+  const [product, setProduct] = useState({});
+  const { get } = useFetch("http://127.0.0.1:8000/");
 
   const productFromCart = props.cart.find(
     (product) => product.id === details.id
   );
   const quantity = productFromCart ? productFromCart.quantity : 0;
+
+  useEffect(() => {
+    get(`products/${details.id}`)
+      .then((data) => {
+        setProduct(data);
+      })
+      .catch((error) => console.log("Could not load product details", error));
+  }, []);
 
   return (
     <div className="product">
@@ -19,7 +31,7 @@ export default function Product(props) {
       >
         <Link to={details.stock > 0 ? `/products/${details.id}` : null}>
           <img
-            src={`http://127.0.0.1:8000/images/${details.image_id}`}
+            src={product.image_url}
             width="100"
             height="100"
             className={clsx("product-image", {
