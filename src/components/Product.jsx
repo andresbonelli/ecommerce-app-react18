@@ -5,13 +5,14 @@ import Button from "./Button";
 import useFetch from "../hooks/useFetch";
 
 export default function Product(props) {
-  const { details } = props;
+  const { details, onProductAdd, onProductDelete } = props;
   const [product, setProduct] = useState({});
   const { get } = useFetch("http://127.0.0.1:8000/");
 
   const productFromCart = props.cart.find(
     (product) => product.id === details.id
   );
+  // Declare local attribute "quantity" from product added to cart
   const quantity = productFromCart ? productFromCart.quantity : 0;
 
   useEffect(() => {
@@ -58,7 +59,7 @@ export default function Product(props) {
           {quantity > 0 && (
             <Button
               outline
-              onClick={() => props.onProductDelete(details.id)}
+              onClick={() => onProductDelete(details.id)}
               className="product-delete"
             >
               x
@@ -67,13 +68,13 @@ export default function Product(props) {
         </div>
         {details.stock > 0 && (
           <p className="product-available-quantity">
-            {`unidades disponibles: ${details.stock - quantity}`}
+            {`stock: ${details.stock - quantity}`}
           </p>
         )}
         <Button
           outline
           disabled={details.stock === 0 || quantity >= details.stock}
-          onClick={() => props.onProductAdd(details)}
+          onClick={() => onProductAdd(details)}
         >
           ${details.price}
         </Button>

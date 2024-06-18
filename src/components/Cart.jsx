@@ -17,6 +17,8 @@ export default function Cart(props) {
     0
   );
 
+  console.log(cart);
+
   const [email, setEmail] = useState("");
 
   function handleFormSubmit(event) {

@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
+import Button from "./Button";
 
 export default function Navbar(props) {
+  const { isDarkTheme, onThemeClick } = props;
   const cartCount = props.cart.reduce(
     (total, product) => total + product.quantity,
     0
@@ -12,6 +14,11 @@ export default function Navbar(props) {
         SuperToco
       </NavLink>
       <ul>
+        <li className="nav-item">
+          <Button className="theme-switcher" onClick={onThemeClick}>
+            {isDarkTheme ? "🌞" : "🌚"}
+          </Button>
+        </li>
         <li className="nav-item">
           <NavLink
             className={({ isActive }) => (isActive ? "active" : "")}

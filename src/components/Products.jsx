@@ -11,6 +11,7 @@ export default function Products(props) {
     get("products")
       .then((data) => {
         setProducts(data);
+        console.log(data);
       })
       .catch((error) => console.log("Could not load products", error));
   }, []);

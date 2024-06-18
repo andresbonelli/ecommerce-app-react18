@@ -11,21 +11,40 @@ import ProductDetailStorage from "./ProductDetailStorage";
 import Cart from "./Cart";
 
 function App() {
+  const restoreDarkTheme = localStorage.getItem("dark_theme") === "true";
+  const [isDarkTheme, setIsDarkTheme] = useState(restoreDarkTheme);
+
   const [cart, setCart] = useState(function () {
     let savedCart = [];
     try {
       savedCart = JSON.parse(localStorage.getItem("cart")) || [];
     } catch (error) {
+      console.log("error restoring saved cart: " + error);
       savedCart = [];
     }
     return savedCart;
   });
+
+  console.log(localStorage);
+
+  useEffect(() => {
+    localStorage.setItem("dark_theme", isDarkTheme);
+    if (isDarkTheme) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  }, [isDarkTheme]);
 
   useEffect(() => {
     if (cart) {
       localStorage.setItem("cart", JSON.stringify(cart));
     }
   }, [cart]);
+
+  function handleThemeClick() {
+    setIsDarkTheme(!isDarkTheme);
+  }
 
   function handleProductDelete(id) {
     const updatedCart = cart.filter((product) => product.id !== id);
@@ -63,7 +82,11 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navbar cart={cart} />
+      <Navbar
+        cart={cart}
+        isDarkTheme={isDarkTheme}
+        onThemeClick={handleThemeClick}
+      />
       <div className="container">
         <Routes>
           <Route path="/" element={<Home />}></Route>
