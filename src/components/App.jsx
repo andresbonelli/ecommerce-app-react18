@@ -102,16 +102,6 @@ function App() {
             }
           ></Route>
           <Route
-            path="/products"
-            element={
-              <Products
-                cart={cart}
-                onProductAdd={handleProductAdd}
-                onProductDelete={handleProductDelete}
-              />
-            }
-          ></Route>
-          <Route
             path="/products/:id/"
             element={
               <ProductDetails
